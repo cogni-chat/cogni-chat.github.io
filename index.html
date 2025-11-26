@@ -6,9 +6,10 @@
     <title>CogniChat | Multimodal Intelligence</title>
     <meta name="description" content="Multimodal Intelligence. Manifesting from Browser (Mind) to Robots (Body). A Rawat Labs Initiative.">
     
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/ico" href="assets/cogni-chat-new-logo-round.ico">
     
     <style>
+        /* --- CORE VARIABLES --- */
         :root {
             --cogni-orange: #E67E22;
             --cogni-glow: #D35400;
@@ -16,6 +17,7 @@
             --card-bg: #161616;
             --text-main: #f0f0f0;
             --text-muted: #888;
+            --overlay-bg: rgba(0, 0, 0, 0.95);
         }
 
         body {
@@ -25,39 +27,33 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             margin: 0;
             text-align: center;
+            padding-bottom: 60px;
         }
 
-        /* --- THE VIDEO CONTAINER --- */
+        /* --- THE LOGO --- */
         .logo-container {
             width: 180px;
             height: 180px;
-            margin-bottom: 30px;
+            margin-top: 60px;
+            margin-bottom: 20px;
             position: relative;
-            
-            /* Circular Masking */
             border-radius: 50%;
             overflow: hidden; 
-            
-            /* Center the video */
             display: flex;
             align-items: center;
             justify-content: center;
-
-            /* The Glowing Aura Animation */
             box-shadow: 0 0 30px rgba(230, 126, 34, 0.2);
             animation: aura-pulse 4s ease-in-out infinite;
         }
-
-        /* The video element itself */
-        .logo-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the video fills the circle completely */
-            display: block;
+        
+        .logo-video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
         }
 
         @keyframes aura-pulse {
@@ -83,78 +79,230 @@
             color: var(--text-muted); 
             font-size: 1.1rem; 
             margin-bottom: 50px; 
-            font-weight: 300;
-            max-width: 600px;
-            line-height: 1.5;
+            font-weight: 300; 
+            max-width: 600px; 
+            line-height: 1.5; 
+            padding: 0 20px;
         }
 
-        /* --- PRODUCT CARD --- */
+        /* --- GRID LAYOUT --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        /* --- CARDS --- */
         .card {
             background: var(--card-bg);
             border: 1px solid #222;
-            padding: 40px;
+            padding: 30px;
             border-radius: 16px;
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: #333;
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-color: #333; 
         }
         
-        h3 { margin-top: 0; font-weight: 600; color: #fff; }
+        .card-icon-img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+        
+        h3 { margin-top: 0; font-weight: 600; color: #fff; font-size: 1.2rem; }
         
         p { 
             color: #aaa; 
             font-size: 0.95rem; 
             line-height: 1.6; 
-            margin-bottom: 30px;
+            margin-bottom: 25px; 
+            flex-grow: 1; 
         }
 
         .meta-tags {
-            font-size: 0.7rem;
-            text-transform: uppercase;
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
             letter-spacing: 1.5px;
-            color: var(--cogni-orange);
-            margin-bottom: 15px;
-            display: block;
+            color: var(--cogni-orange); 
+            margin-bottom: 15px; 
             font-weight: 700;
         }
 
-        /* --- BUTTON --- */
+        /* --- ACTION AREA --- */
+        .action-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* --- BUTTONS --- */
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, var(--cogni-orange), var(--cogni-glow));
-            color: white;
-            padding: 14px 35px;
+            color: white; 
+            padding: 12px 30px; 
             border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.2s ease;
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            transition: all 0.2s ease; 
             box-shadow: 0 5px 20px rgba(230, 126, 34, 0.2);
         }
         
         .btn:hover { 
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(230, 126, 34, 0.4);
-            filter: brightness(1.1);
+            transform: scale(1.02); 
+            box-shadow: 0 10px 30px rgba(230, 126, 34, 0.4); 
+            filter: brightness(1.1); 
+        }
+        
+        .btn-secondary {
+            background: transparent; 
+            border: 1px solid #333; 
+            box-shadow: none; 
+            color: #666;
+            cursor: default;
+        }
+        
+        /* Style for disabled/coming soon buttons */
+        .btn-disabled {
+             border-color: #333;
+             color: #555;
+             cursor: not-allowed;
+             box-shadow: none !important;
+             transform: none !important;
+             filter: none !important;
+        }
+
+        .preview-link {
+            font-size: 0.85rem;
+            color: #888;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px dotted #555;
+            padding-bottom: 2px;
+        }
+        .preview-link:hover {
+            color: var(--cogni-orange);
+            border-color: var(--cogni-orange);
         }
 
         /* --- FOOTER --- */
-        footer {
-            margin-top: auto;
-            padding: 40px 0 20px;
-            font-size: 0.8rem;
-            color: #444;
+        footer { 
+            margin-top: auto; 
+            padding-top: 60px; 
+            font-size: 0.8rem; 
+            color: #444; 
         }
         
-        footer a { color: #666; text-decoration: none; }
+        footer a { 
+            color: #666; 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            font-weight: 700; 
+            transition: 0.2s;
+        }
+        
         footer a:hover { color: var(--cogni-orange); }
+        
+        .footnote { 
+            font-size: 0.7rem; 
+            color: #333; 
+            margin-top: 8px; 
+            font-style: italic; 
+        }
 
+        /* --- MODAL / GALLERY STYLES --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: var(--overlay-bg); 
+            backdrop-filter: blur(10px); /* Increased blur for better focus */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Modal Image */
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh; /* Slightly taller */
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            border: 1px solid #333;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {transform:scale(0.95); opacity:0} 
+            to {transform:scale(1); opacity:1}
+        }
+
+        /* Controls */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: 300;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .close-btn:hover {
+            color: var(--cogni-orange);
+        }
+
+        .nav-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 20px;
+            margin-top: -50px;
+            color: rgba(255,255,255,0.5);
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.3s ease;
+            user-select: none;
+        }
+
+        .nav-btn:hover { color: var(--cogni-orange); transform: scale(1.2); }
+        .prev { left: 30px; }
+        .next { right: 30px; }
+
+        .caption-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
@@ -162,35 +310,165 @@
     <div class="logo-container">
         <video class="logo-video" autoplay loop muted playsinline>
             <source src="assets/cogni-chat-new-logo.mp4" type="video/mp4">
-            <img src="logo.png" alt="CogniChat Cortex">
+            <img src="assets/cogni-chat-new-logo.png" alt="CogniChat Cortex">
         </video>
     </div>
 
     <h1>CogniChat</h1>
     <div class="tagline">
-        Multimodal Intelligence.<br>
-        Manifesting from Browser (Mind) to Robots (Body).
+        Multimodal Intelligence*<br>
+        Manifesting from Software (Mind) to Robots (Body).
     </div>
 
-    <div class="card">
-        <span class="meta-tags">Browser Manifestation • v1.0</span>
-        <h3>🛡️ Cogni Time Shield</h3>
-        <p>
-            Focus with intention. A privacy-first, open-source shield for your attention.
-            <br><br>
-            <span style="font-size: 0.85rem; color: #666;">
-                NO TRACKING • NO ADS • FOREVER FREE
-            </span>
-        </p>
+    <div class="grid">
         
-        <a href="https://github.com/cogni-chat/time-shield" class="btn">
-            Get the Extension
-        </a>
+        <div class="card">
+            <span class="meta-tags">Browser Extension</span>
+            <img src="assets/cogni-time-shield.ico" class="card-icon-img" alt="Shield Icon">
+            <h3>Cogni - Time Shield</h3>
+            <p>Shield your most precious asset - Your ATTENTION. No tracking, no ads.</p>
+            <div class="action-area">
+                <a href="https://github.com/cogni-chat/time-shield" class="btn">Get Extension</a>
+                <a class="preview-link" onclick="openGallery('timeshield')">Preview</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="meta-tags">Tablet / Android</span>
+            <img src="assets/cogni-prajna.ico" class="card-icon-img" alt="Prajna Icon">
+            <h3>Cogni - Prajna</h3>
+            <p>Train your MIND. A dedicated interface for focus and insight.</p>
+            <div class="action-area">
+                <a class="btn btn-secondary btn-disabled">Coming Soon</a>
+                <a class="preview-link" onclick="openGallery('prajna')">Preview</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="meta-tags">Mobile / AI Vision</span>
+            <img src="assets/cogni-foodwise-AR.ico" class="card-icon-img" alt="FoodWise Icon">
+            <h3>Cogni - FoodWise AR</h3>
+            <p>Scan if it's worth consuming. Instant discernment for the BODY.</p>
+            <div class="action-area">
+                <a class="btn btn-secondary btn-disabled">Coming Soon</a>
+                <a class="preview-link" onclick="openGallery('foodwise')">Preview App</a>
+            </div>
+        </div>
+
     </div>
 
     <footer>
-        A <a href="https://airawatraj.github.io" style="text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">RAWAT LABS</a> Initiative.
+        A <a href="https://airawatraj.github.io">RAWAT LABS</a> Initiative.
+        <div class="footnote">*System currently in architectural development.</div>
     </footer>
-    
+
+    <div id="galleryModal" class="modal">
+        <span class="close-btn" onclick="closeGallery()">&times;</span>
+        
+        <img class="modal-content" id="modalImg">
+        <div id="caption" class="caption-text"></div>
+
+        <a class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="nav-btn next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <script>
+        // --- DATA SOURCE ---
+        // Ensure all these files exist in your 'assets' folder!
+        const galleries = {
+            'timeshield': [
+                'assets/time-shield-1.png',
+                'assets/time-shield-2.png',
+                'assets/time-shield-3.png'
+            ],
+            'prajna': [
+                'assets/prajna-1.png',
+                'assets/prajna-2.png',
+                'assets/prajna-3.png',
+                'assets/prajna-4.jpg',
+                'assets/prajna-5.jpg'
+            ],
+            'foodwise': [
+                'assets/foodwise-1.png', // The home/scan screen
+                'assets/foodwise-2.png', // Nuts result
+                'assets/foodwise-3.png', // Tangerine result
+                'assets/foodwise-4.png', // History list
+                'assets/foodwise-5.png'  // Story page
+            ]
+        };
+
+        // --- STATE ---
+        let currentApp = '';
+        let currentIndex = 0;
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImg');
+        const caption = document.getElementById('caption');
+
+        // --- FUNCTIONS ---
+
+        function openGallery(appId) {
+            // Safety check: Does this app exist in our data?
+            if (!galleries[appId] || galleries[appId].length === 0) {
+                console.error("No images found for ID:", appId);
+                return;
+            }
+            
+            currentApp = appId;
+            currentIndex = 0; // Always start at the first image
+            
+            updateImage();
+            
+            // Show modal and disable background scrolling
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden"; 
+        }
+
+        function closeGallery() {
+            // Hide modal and re-enable background scrolling
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; 
+        }
+
+        function changeSlide(n) {
+            let total = galleries[currentApp].length;
+            currentIndex += n;
+
+            // Infinite loop logic
+            if (currentIndex >= total) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = total - 1;
+
+            updateImage();
+        }
+
+        function updateImage() {
+            // Fade out briefly (optional, for smoother transition)
+            modalImg.style.opacity = 0.8;
+            
+            setTimeout(() => {
+                 let src = galleries[currentApp][currentIndex];
+                 modalImg.src = src;
+                 // Update caption with current slide number
+                 caption.innerText = `${currentApp.toUpperCase()} PREVIEW | ${currentIndex + 1} of ${galleries[currentApp].length}`;
+                 modalImg.style.opacity = 1;
+            }, 100);
+        }
+
+        // Close modal when clicking outside the image content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeGallery();
+            }
+        }
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(event) {
+            if (modal.style.display === "flex") {
+                if (event.key === "Escape") closeGallery();
+                if (event.key === "ArrowLeft") changeSlide(-1);
+                if (event.key === "ArrowRight") changeSlide(1);
+            }
+        });
+    </script>
+
 </body>
 </html>
