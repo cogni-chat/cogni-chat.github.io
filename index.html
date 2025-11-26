@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniChat | Multimodal Intelligence</title>
+    <meta name="description" content="Multimodal Intelligence. Manifesting from Browser (Mind) to Robots (Body). A Rawat Labs Initiative.">
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <style>
+        :root {
+            --cogni-orange: #E67E22;
+            --cogni-glow: #D35400;
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+            --text-main: #f0f0f0;
+            --text-muted: #888;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* --- THE VIDEO CONTAINER --- */
+        .logo-container {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 30px;
+            position: relative;
+            
+            /* Circular Masking */
+            border-radius: 50%;
+            overflow: hidden; 
+            
+            /* Center the video */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* The Glowing Aura Animation */
+            box-shadow: 0 0 30px rgba(230, 126, 34, 0.2);
+            animation: aura-pulse 4s ease-in-out infinite;
+        }
+
+        /* The video element itself */
+        .logo-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video fills the circle completely */
+            display: block;
+        }
+
+        @keyframes aura-pulse {
+            0% { box-shadow: 0 0 20px rgba(230, 126, 34, 0.1); }
+            50% { box-shadow: 0 0 60px rgba(230, 126, 34, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(230, 126, 34, 0.1); }
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 { 
+            font-weight: 300; 
+            letter-spacing: -0.03em; 
+            margin-bottom: 10px; 
+            font-size: 3rem;
+            background: linear-gradient(180deg, #fff, #999);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        
+        .tagline { 
+            color: var(--text-muted); 
+            font-size: 1.1rem; 
+            margin-bottom: 50px; 
+            font-weight: 300;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        /* --- PRODUCT CARD --- */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 40px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #333;
+        }
+        
+        h3 { margin-top: 0; font-weight: 600; color: #fff; }
+        
+        p { 
+            color: #aaa; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            margin-bottom: 30px;
+        }
+
+        .meta-tags {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--cogni-orange);
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 700;
+        }
+
+        /* --- BUTTON --- */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cogni-orange), var(--cogni-glow));
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 20px rgba(230, 126, 34, 0.2);
+        }
+        
+        .btn:hover { 
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(230, 126, 34, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            padding: 40px 0 20px;
+            font-size: 0.8rem;
+            color: #444;
+        }
+        
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: var(--cogni-orange); }
+
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <video class="logo-video" autoplay loop muted playsinline>
+            <source src="assets/cogni-chat-new-logo.mp4" type="video/mp4">
+            <img src="logo.png" alt="CogniChat Cortex">
+        </video>
+    </div>
+
+    <h1>CogniChat</h1>
+    <div class="tagline">
+        Multimodal Intelligence.<br>
+        Manifesting from Browser (Mind) to Robots (Body).
+    </div>
+
+    <div class="card">
+        <span class="meta-tags">Browser Manifestation • v1.0</span>
+        <h3>🛡️ Cogni Time Shield</h3>
+        <p>
+            Focus with intention. A privacy-first, open-source shield for your attention.
+            <br><br>
+            <span style="font-size: 0.85rem; color: #666;">
+                NO TRACKING • NO ADS • FOREVER FREE
+            </span>
+        </p>
+        
+        <a href="https://github.com/cogni-chat/time-shield" class="btn">
+            Get the Extension
+        </a>
+    </div>
+
+    <footer>
+        A <a href="https://airawatraj.github.io">Rawat Labs</a> Initiative.
+    </footer>
+
+</body>
+</html>
