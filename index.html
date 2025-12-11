@@ -80,10 +80,11 @@
             color: #C2410C; /* Orange-700 */
             font-size: 0.75rem;
             font-weight: 600;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 99px;
             border: 1px solid #FFEDD5;
             margin-bottom: 50px;
+            letter-spacing: 0.5px;
         }
 
         /* --- HERO CARD --- */
@@ -141,10 +142,37 @@
 
         /* --- BUTTONS --- */
         .btn-group { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; background-color: var(--ink); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s ease; cursor: pointer; border: 1px solid var(--ink); }
-        .btn:hover { background-color: #333; transform: scale(1.02); }
-        .btn-outline { background-color: transparent; color: var(--ink); }
-        .btn-outline:hover { background-color: #f5f5f5; color: black; }
+        
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            background-color: var(--ink); 
+            color: white; 
+            padding: 12px 24px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            transition: all 0.2s ease; 
+            cursor: pointer; 
+            border: 1px solid var(--ink); 
+        }
+        
+        .btn:hover { 
+            background-color: #333; 
+            transform: scale(1.02); 
+        }
+        
+        .btn-outline { 
+            background-color: transparent; 
+            color: var(--ink); 
+        }
+        
+        .btn-outline:hover { 
+            background-color: #f5f5f5; 
+            color: black; 
+        }
 
         .specs {
             margin-top: 30px;
@@ -159,11 +187,62 @@
         .spec-label { font-size: 0.7rem; color: #999; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
         .spec-val { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
 
-        /* --- MODAL --- */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; }
-        .modal-content { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); border: 1px solid #333; }
-        .close-btn { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
-        .caption-text { color: #888; font-size: 0.9rem; padding: 15px 0; }
+        /* --- MODAL & GALLERY --- */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.95); 
+            backdrop-filter: blur(10px); 
+            align-items: center; 
+            justify-content: center; 
+            flex-direction: column; 
+        }
+        
+        .modal-content { 
+            max-width: 90%; 
+            max-height: 85vh; 
+            border-radius: 12px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9); 
+            border: 1px solid #333; 
+        }
+        
+        .close-btn { 
+            position: absolute; 
+            top: 20px; 
+            right: 35px; 
+            color: white; 
+            font-size: 40px; 
+            cursor: pointer; 
+            z-index: 1001; 
+        }
+        
+        /* Navigation Arrows */
+        .nav-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 20px;
+            margin-top: -50px;
+            color: rgba(255,255,255,0.5);
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.3s ease;
+            user-select: none;
+            z-index: 1001;
+        }
+
+        .nav-btn:hover { color: var(--cogni-orange); transform: scale(1.2); }
+        .prev { left: 30px; }
+        .next { right: 30px; }
+
+        .caption-text { color: #888; font-size: 0.9rem; padding: 15px 0; letter-spacing: 1px;}
         
         /* --- FOOTER --- */
         footer { 
@@ -237,8 +316,12 @@
 
     <div id="galleryModal" class="modal">
         <span class="close-btn" onclick="closeGallery()">&times;</span>
+        
         <img class="modal-content" id="modalImg">
         <div id="caption" class="caption-text"></div>
+
+        <a class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="nav-btn next" onclick="changeSlide(1)">&#10095;</a>
     </div>
 
     <script>
@@ -265,19 +348,37 @@
             modal.style.display = "none";
         }
 
-        function updateImage() {
-            modalImg.src = images[currentIndex];
-            caption.innerText = `PREVIEW | ${currentIndex + 1} of 3`;
-        }
-        
-        modalImg.onclick = function() {
-            currentIndex = (currentIndex + 1) % images.length;
+        function changeSlide(n) {
+            currentIndex += n;
+            // Loop logic
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
             updateImage();
         }
 
+        function updateImage() {
+            modalImg.src = images[currentIndex];
+            caption.innerText = `PREVIEW | ${currentIndex + 1} of ${images.length}`;
+        }
+        
+        // Simple click to cycle
+        modalImg.onclick = function() {
+            changeSlide(1);
+        }
+
+        // Close on background click
         window.onclick = function(event) {
             if (event.target == modal) closeGallery();
         }
+
+        // KEYBOARD SUPPORT RESTORED
+        document.addEventListener('keydown', function(event) {
+            if (modal.style.display === "flex") {
+                if (event.key === "Escape") closeGallery();
+                if (event.key === "ArrowLeft") changeSlide(-1);
+                if (event.key === "ArrowRight") changeSlide(1);
+            }
+        });
     </script>
 
 </body>
