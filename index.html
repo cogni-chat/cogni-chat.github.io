@@ -3,48 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cogni | Local-First Intelligence</title>
+    <title>Cogni | Local-First Intelligence (MVP)</title>
     <meta name="description" content="A multimodal agent acting as the bridge between your digital life and physical reality.">
     <link rel="icon" type="image/ico" href="assets/cogni-chat-new-logo-round.ico">
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* [Same CSS as previous White Theme, adding Modal CSS] */
-        :root { --ink: #111111; --slate: #64748B; --highlight: #4F46E5; --cogni-orange: #E67E22; --bg-light: #FAFAFA; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-light); color: var(--ink); display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; text-align: center; padding-bottom: 60px; }
+        /* --- SWISS STYLE VARIABLES --- */
+        :root {
+            --ink: #111111;
+            --slate: #64748B;
+            --highlight: #4F46E5;
+            --cogni-orange: #E67E22;
+            --bg-light: #FAFAFA;
+        }
 
-        .logo-container { width: 140px; height: 140px; margin-top: 80px; margin-bottom: 30px; position: relative; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(0,0,0,0.1); background: white; border: 1px solid #eee; }
-        .logo-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--ink);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding-bottom: 60px;
+        }
 
-        h1 { font-weight: 800; letter-spacing: -0.04em; margin-bottom: 10px; font-size: 3.5rem; color: var(--ink); }
-        .tagline { color: var(--slate); font-size: 1.25rem; margin-bottom: 60px; font-weight: 400; max-width: 600px; line-height: 1.5; padding: 0 20px; }
+        /* --- THE LOGO --- */
+        .logo-container {
+            width: 140px;
+            height: 140px;
+            margin-top: 80px;
+            margin-bottom: 30px;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background: white;
+            border: 1px solid #eee;
+        }
+        
+        .logo-video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+        }
 
-        .hero-card { background: white; border: 1px solid #e5e5e5; padding: 40px; border-radius: 24px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); max-width: 500px; width: 90%; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; }
-        .hero-card:hover { transform: translateY(-4px); box-shadow: 0 25px 50px -10px rgba(0,0,0,0.1); }
-        .hero-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--cogni-orange), var(--highlight)); }
+        /* --- TYPOGRAPHY --- */
+        h1 { 
+            font-weight: 800; 
+            letter-spacing: -0.04em; 
+            margin-bottom: 10px; 
+            font-size: 3.5rem;
+            color: var(--ink);
+        }
+        
+        .tagline { 
+            color: var(--slate); 
+            font-size: 1.25rem; 
+            margin-bottom: 10px; 
+            font-weight: 400; 
+            max-width: 600px; 
+            line-height: 1.5; 
+            padding: 0 20px;
+        }
 
-        .tech-badge { background-color: #F3F4F6; color: var(--slate); padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; display: inline-block; }
-        h3 { margin: 0 0 15px 0; font-weight: 700; color: var(--ink); font-size: 1.5rem; }
-        p { color: var(--slate); font-size: 1rem; line-height: 1.6; margin-bottom: 30px; }
+        .wip-badge {
+            display: inline-block;
+            background-color: #FFF7ED; /* Orange-50 */
+            color: #C2410C; /* Orange-700 */
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 99px;
+            border: 1px solid #FFEDD5;
+            margin-bottom: 50px;
+        }
 
+        /* --- HERO CARD --- */
+        .hero-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+            max-width: 500px;
+            width: 90%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -10px rgba(0,0,0,0.1);
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--cogni-orange), var(--highlight));
+        }
+
+        .tech-badge {
+            background-color: #F3F4F6;
+            color: var(--slate);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h3 { 
+            margin: 0 0 15px 0; 
+            font-weight: 700; 
+            color: var(--ink); 
+            font-size: 1.5rem; 
+        }
+        
+        p { 
+            color: var(--slate); 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            margin-bottom: 30px; 
+        }
+
+        /* --- BUTTONS --- */
         .btn-group { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
         .btn { display: inline-flex; align-items: center; gap: 8px; background-color: var(--ink); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s ease; cursor: pointer; border: 1px solid var(--ink); }
         .btn:hover { background-color: #333; transform: scale(1.02); }
         .btn-outline { background-color: transparent; color: var(--ink); }
         .btn-outline:hover { background-color: #f5f5f5; color: black; }
 
-        .specs { margin-top: 30px; padding-top: 25px; border-top: 1px dashed #eee; display: flex; justify-content: space-around; width: 100%; }
+        .specs {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px dashed #eee;
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
         .spec-item { display: flex; flex-direction: column; gap: 4px; }
         .spec-label { font-size: 0.7rem; color: #999; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
         .spec-val { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
 
-        /* MODAL (Re-added for preview) */
+        /* --- MODAL --- */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; }
         .modal-content { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); border: 1px solid #333; }
         .close-btn { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
         .caption-text { color: #888; font-size: 0.9rem; padding: 15px 0; }
-        footer { margin-top: auto; padding-top: 60px; font-size: 0.8rem; color: #888; }
-        footer a { color: var(--ink); text-decoration: none; font-weight: 700; }
+        
+        /* --- FOOTER --- */
+        footer { 
+            margin-top: auto; 
+            padding-top: 60px; 
+            font-size: 0.8rem; 
+            color: #888; 
+        }
+        
+        footer a { 
+            color: var(--ink); 
+            text-decoration: none; 
+            font-weight: 700; 
+        }
     </style>
 </head>
 <body>
@@ -60,6 +193,10 @@
     <div class="tagline">
         Local-First Intelligence.<br>
         Bridging your Digital Mind with Physical Reality.
+    </div>
+    
+    <div class="wip-badge">
+        Experimental MVP • Work in Progress
     </div>
 
     <div class="hero-card">
@@ -81,11 +218,11 @@
         <div class="specs">
             <div class="spec-item">
                 <span class="spec-label">Host</span>
-                <span class="spec-val">Mac M1/M2</span>
+                <span class="spec-val">MacOS</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label">Client</span>
-                <span class="spec-val">Pixel / iOS</span>
+                <span class="spec-val">Android / iOS</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label">Brain</span>
@@ -95,7 +232,7 @@
     </div>
 
     <footer>
-        <p>A Product of <a href="https://rawatlabs.github.io/">RAWAT LABS</a></p>
+        <p>A <a href="https://rawatlabs.github.io/">RAWAT LABS</a> Initiative.</p>
     </footer>
 
     <div id="galleryModal" class="modal">
@@ -107,7 +244,6 @@
     <script>
         lucide.createIcons();
 
-        // Sample Files logic
         const images = [
             'assets/cogni-core-1-terminal.png', 
             'assets/cogni-core-2-webui.png', 
@@ -119,8 +255,10 @@
         const caption = document.getElementById('caption');
 
         function openGallery() {
-            modal.style.display = "flex";
-            updateImage();
+            if (images.length > 0) {
+                modal.style.display = "flex";
+                updateImage();
+            }
         }
 
         function closeGallery() {
@@ -132,7 +270,6 @@
             caption.innerText = `PREVIEW | ${currentIndex + 1} of 3`;
         }
         
-        // Simple click to cycle
         modalImg.onclick = function() {
             currentIndex = (currentIndex + 1) % images.length;
             updateImage();
