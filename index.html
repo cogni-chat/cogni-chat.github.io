@@ -33,22 +33,22 @@
             min-height: 100vh;
             margin: 0;
             text-align: center;
-            padding: 20px;
+            /* Reduced padding to help fit on mobile screens */
+            padding: 15px; 
         }
 
         /* --- HERO CARD --- */
         .hero-card {
             background: white;
             border: 1px solid #e5e5e5;
-            padding: 40px;
+            padding: 35px; /* Slightly reduced padding */
             border-radius: 24px;
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
-            max-width: 380px; /* Reduced width for a cleaner, tighter mobile look */
+            max-width: 380px;
             width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
-            /* Optical centering adjustment */
             margin-top: -20px; 
         }
 
@@ -69,7 +69,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            /* Reduced margin to save vertical space */
+            margin-bottom: 15px; 
         }
 
         .wip-badge {
@@ -89,12 +90,11 @@
             font-weight: 600;
         }
 
-        /* --- VIDEO CROPPER (FINE TUNED) --- */
+        /* --- VIDEO CROPPER --- */
         .video-cropper {
             display: block;
-            margin: 0 auto 10px auto;
+            margin: 0 auto 5px auto; /* Reduced bottom margin */
             width: 100%;
-            /* Forces a square shape. This usually cuts off side bars automatically. */
             aspect-ratio: 1 / 0.7; 
             border-radius: 12px;
             overflow: hidden; 
@@ -106,16 +106,12 @@
             height: 100%;
             object-fit: cover; 
             object-position: center;
-            /* THE FIX: Scale 1.08 zooms in 8%.
-               Adjust this number up (e.g. 1.10) if you still see black lines.
-               Adjust down (e.g. 1.05) if icons are cut.
-            */
             transform: scale(0.6); 
         }
 
         /* --- TITLE & TAGLINE --- */
         h1 { 
-            margin: 15px 0 5px 0; 
+            margin: 10px 0 5px 0; 
             font-weight: 800; 
             color: var(--ink); 
             font-size: 2.2rem; 
@@ -126,14 +122,14 @@
             color: var(--slate);
             font-size: 0.9rem;
             font-weight: 500;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         p.description { 
             color: var(--slate); 
             font-size: 0.9rem; 
             line-height: 1.6; 
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             padding: 0 5px;
         }
 
@@ -152,6 +148,18 @@
         .btn-outline { background-color: transparent; color: var(--ink); }
         .btn-outline:hover { background-color: #f5f5f5; color: black; }
 
+        /* Disabled Button Style for "Soon" */
+        .btn-disabled {
+            background-color: #f5f5f5;
+            color: #999;
+            border-color: #eee;
+            cursor: default;
+        }
+        .btn-disabled:hover {
+            background-color: #f5f5f5;
+            transform: none;
+        }
+
         /* --- SPECS --- */
         .specs {
             padding-top: 20px;
@@ -167,7 +175,7 @@
 
         /* --- FOOTER --- */
         footer { 
-            margin-top: 40px; 
+            margin-top: 30px; 
             font-size: 0.75rem; 
             color: #ccc; 
             text-transform: uppercase; 
@@ -206,9 +214,10 @@
         </p>
         
         <div class="btn-group">
-            <a href="https://github.com/cogni-chat/cogni" class="btn">
-                <i data-lucide="github" width="16"></i> Source
+            <a href="#" class="btn btn-disabled" onclick="return false;">
+                <i data-lucide="download" width="16"></i> Soon
             </a>
+            
             <button onclick="openGallery()" class="btn btn-outline">
                 <i data-lucide="eye" width="16"></i> Preview
             </button>
@@ -231,7 +240,7 @@
     </div>
 
     <footer>
-        <a href="https://rawatlabs.github.io/">Rawat Labs</a> Initiative
+        A <a href="https://rawatlabs.github.io/">Rawat Labs</a> Initiative.
     </footer>
 
     <div id="galleryModal" class="modal">
