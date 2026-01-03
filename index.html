@@ -9,9 +9,7 @@
     <link rel="icon" type="image/ico" href="assets/cogni-chat-new-logo-round.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FAFAFA">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+    
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
@@ -31,58 +29,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center; /* Centers card vertically */
             min-height: 100vh;
             margin: 0;
             text-align: center;
-            padding-bottom: 60px;
-        }
-
-        /* --- TYPOGRAPHY --- */
-        h1 { 
-            font-weight: 800; 
-            letter-spacing: -0.04em; 
-            margin-top: 80px; 
-            margin-bottom: 10px; 
-            font-size: 3rem;
-            color: var(--ink);
-            line-height: 1.1;
-        }
-        
-        .tagline { 
-            color: var(--slate); 
-            font-size: 1.2rem; 
-            margin-bottom: 30px; 
-            font-weight: 400; 
-            max-width: 600px; 
-            line-height: 1.5; 
-            padding: 0 20px;
-        }
-
-        .wip-badge {
-            display: inline-block;
-            background-color: #FFF7ED;
-            color: #C2410C;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 6px 16px;
-            border-radius: 99px;
-            border: 1px solid #FFEDD5;
-            margin-bottom: 40px;
-            letter-spacing: 0.5px;
+            padding: 20px;
         }
 
         /* --- HERO CARD --- */
         .hero-card {
             background: white;
             border: 1px solid #e5e5e5;
-            padding: 50px 40px;
+            padding: 40px;
             border-radius: 24px;
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
-            max-width: 500px;
-            width: 90%;
+            max-width: 420px; /* Slightly tighter width for elegance */
+            width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            margin-top: -40px; /* Optical centering compensation */
         }
 
         .hero-card:hover {
@@ -97,167 +63,173 @@
             background: linear-gradient(90deg, var(--cogni-orange), var(--highlight));
         }
 
-        .tech-badge {
-            background-color: #F3F4F6;
-            color: var(--slate);
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        /* --- BADGE & HEADER INSIDE CARD --- */
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 25px;
-            display: inline-block;
         }
 
+        .wip-badge {
+            background-color: #FFF7ED;
+            color: #C2410C;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 99px;
+            border: 1px solid #FFEDD5;
+            letter-spacing: 0.5px;
+        }
         
-        /* --- VIDEO CROPPER --- */
+        .version-badge {
+            font-size: 0.75rem;
+            color: #999;
+            font-weight: 600;
+        }
+
+        /* --- VIDEO CROPPER (BETTER FIX) --- */
         .video-cropper {
             display: block;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 10px auto;
             width: 100%;
-            max-width: 400px;
-            /* Force a specific height or aspect ratio to frame the content */
-            aspect-ratio: 4/3; 
+            height: 220px; /* Fixed height container */
             border-radius: 12px;
-            overflow: hidden; /* This cuts off the black bars */
+            overflow: hidden; 
             position: relative;
-            background-color: white;
         }
 
         .family-banner {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            /* ZOOM TRICK: 
-            Scale 1.2 zooms in by 20%. 
-            This pushes the side black bars out of the viewable area.
-            Adjust this number (e.g., 1.2 or 1.5) if it cuts off too much/little.
+            object-fit: cover; 
+            /* Instead of scale, we use object-position to center.
+               Since 'cover' naturally crops overflow, this should work better
+               without "zooming" too hard if the aspect ratio is set on parent.
             */
-            transform: scale(1.1); 
-            transform-origin: center;
+            object-position: center; 
         }
 
-        h3 { 
-            margin: 10px 0 15px 0; 
-            font-weight: 700; 
+        /* --- TITLE & TAGLINE --- */
+        h1 { 
+            margin: 10px 0 5px 0; 
+            font-weight: 800; 
             color: var(--ink); 
-            font-size: 1.5rem; 
+            font-size: 2rem; 
+            letter-spacing: -0.03em;
+        }
+
+        .card-tagline {
+            color: var(--slate);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 20px;
         }
         
-        p { 
+        p.description { 
             color: var(--slate); 
-            font-size: 1rem; 
+            font-size: 0.9rem; 
             line-height: 1.6; 
-            margin-bottom: 35px; 
+            margin-bottom: 30px; 
+            padding: 0 10px;
         }
 
         /* --- BUTTONS --- */
-        .btn-group { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
         
         .btn { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 8px; 
-            background-color: var(--ink); 
-            color: white; 
-            padding: 12px 24px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.9rem; 
-            transition: all 0.2s ease; 
-            cursor: pointer; 
-            border: 1px solid var(--ink); 
+            display: inline-flex; align-items: center; gap: 6px; 
+            background-color: var(--ink); color: white; 
+            padding: 10px 20px; border-radius: 50px; 
+            text-decoration: none; font-weight: 600; font-size: 0.85rem; 
+            transition: all 0.2s ease; cursor: pointer; border: 1px solid var(--ink); 
         }
         
         .btn:hover { background-color: #333; transform: scale(1.02); }
         .btn-outline { background-color: transparent; color: var(--ink); }
         .btn-outline:hover { background-color: #f5f5f5; color: black; }
 
+        /* --- SPECS --- */
         .specs {
-            margin-top: 35px;
-            padding-top: 25px;
+            margin-top: 25px;
+            padding-top: 20px;
             border-top: 1px dashed #eee;
             display: flex;
             justify-content: space-around;
             width: 100%;
         }
 
-        .spec-item { display: flex; flex-direction: column; gap: 4px; }
-        .spec-label { font-size: 0.7rem; color: #999; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
-        .spec-val { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+        .spec-item { display: flex; flex-direction: column; gap: 2px; }
+        .spec-label { font-size: 0.65rem; color: #999; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+        .spec-val { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
 
-        /* --- MODAL --- */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; }
-        .modal-content { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.9); border: 1px solid #333; }
-        .close-btn { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; z-index: 1001; }
-        .nav-btn { cursor: pointer; position: absolute; top: 50%; padding: 20px; margin-top: -50px; color: rgba(255,255,255,0.5); font-weight: bold; font-size: 30px; transition: 0.3s ease; user-select: none; z-index: 1001; }
-        .nav-btn:hover { color: #E67E22; transform: scale(1.2); }
-        .prev { left: 30px; }
-        .next { right: 30px; }
-        .caption-text { color: #888; font-size: 0.9rem; padding: 15px 0; }
-        
         /* --- FOOTER --- */
-        footer { margin-top: auto; padding-top: 60px; font-size: 0.8rem; color: #888; }
-        footer a { color: var(--ink); text-decoration: none; font-weight: 700; }
+        footer { 
+            margin-top: 30px; 
+            font-size: 0.75rem; 
+            color: #ccc; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+        footer a { color: #999; text-decoration: none; font-weight: 700; }
+        
+        /* Modal Styles remain the same (omitted for brevity, keep your existing script/css for modal) */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; }
+        .modal-content { max-width: 90%; max-height: 85vh; border-radius: 12px; }
+        .close-btn { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
+        .nav-btn { cursor: pointer; position: absolute; top: 50%; padding: 20px; margin-top: -50px; color: rgba(255,255,255,0.5); font-weight: bold; font-size: 30px; transition: 0.3s ease; user-select: none; }
+        .prev { left: 30px; } .next { right: 30px; }
+        .caption-text { color: #888; font-size: 0.9rem; padding: 15px 0; }
     </style>
 </head>
 <body>
 
-    <h1>Cogni.chat</h1>
-    
-    <div class="tagline">
-        Local-First Intelligence.<br>
-        Bridging your Digital Mind with Physical Reality.
-    </div>
-    
-    <div class="wip-badge">
-        Experimental MVP • Work in Progress
-    </div>
-
     <div class="hero-card">
-        <span class="tech-badge">Edge Agent V1</span>
-        
-       <div class="video-cropper">
+        <div class="top-row">
+            <span class="wip-badge">MVP • Work in Progress</span>
+            <span class="version-badge">v1.0 EDGE</span>
+        </div>
+
+        <div class="video-cropper">
             <video class="family-banner" autoplay loop muted playsinline>
                 <source src="assets/cogni_one_logo_with_family.mp4" type="video/mp4">
             </video>
         </div>
 
-        <h3>Cogni One</h3>
-        
-        <p>
-            Your private, multimodal LifeOS. Cogni One unifies attention, body, energy, and intellect by integrating the Rawat Labs ecosystem - Still, Breath, Ground, Weaver, and Sign - into one cohesive edge intelligence that amplifies consciousness.
+        <h1>Cogni.chat</h1>
+        <div class="card-tagline">Local-First LifeOS</div>
+
+        <p class="description">
+            Unifies attention, body, energy, and intellect by integrating the Rawat Labs ecosystem - Still, Breath, Ground, Weaver, and Sign - into one cohesive edge intelligence.
         </p>
         
         <div class="btn-group">
             <a href="https://github.com/cogni-chat/cogni" class="btn">
-                <i data-lucide="github" width="18"></i> Source
+                <i data-lucide="github" width="16"></i> Source
             </a>
             <button onclick="openGallery()" class="btn btn-outline">
-                <i data-lucide="eye" width="18"></i> Preview
+                <i data-lucide="eye" width="16"></i> Preview
             </button>
         </div>
 
         <div class="specs">
             <div class="spec-item">
                 <span class="spec-label">Host</span>
-                <span class="spec-val">Your Laptop</span>
+                <span class="spec-val">Laptop</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label">Client</span>
-                <span class="spec-val">Laptop / Mobile</span>
+                <span class="spec-val">Mobile</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label">Brain</span>
-                <span class="spec-val">Multimodal AI</span>
+                <span class="spec-val">Multimodal</span>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>A <a href="https://rawatlabs.github.io/">RAWAT LABS</a> Initiative.</p>
+        <a href="https://rawatlabs.github.io/">Rawat Labs</a> Initiative
     </footer>
 
     <div id="galleryModal" class="modal">
@@ -270,59 +242,18 @@
 
     <script>
         lucide.createIcons();
-
-        const images = [
-            'assets/cogni-core-1-terminal.jpg', 
-            'assets/cogni-core-2-webui.png', 
-            'assets/cogni-core-3-mobile.png'
-        ];
-        
-        const captions = [
-            'CORE: Python Terminal Interface (v1.35)',
-            'MIND: Chat Interface with Memory',
-            'BODY: Computer Vision & Satvic Analysis'
-        ];
-
+        const images = ['assets/cogni-core-1-terminal.jpg', 'assets/cogni-core-2-webui.png', 'assets/cogni-core-3-mobile.png'];
+        const captions = ['CORE: Python Terminal Interface (v1.35)', 'MIND: Chat Interface with Memory', 'BODY: Computer Vision & Satvic Analysis'];
         let currentIndex = 0;
         const modal = document.getElementById('galleryModal');
         const modalImg = document.getElementById('modalImg');
         const caption = document.getElementById('caption');
-
-        function openGallery() {
-            if (images.length > 0) {
-                modal.style.display = "flex";
-                updateImage();
-            }
-        }
-
-        function closeGallery() {
-            modal.style.display = "none";
-        }
-
-        function changeSlide(n) {
-            currentIndex += n;
-            if (currentIndex >= images.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = images.length - 1;
-            updateImage();
-        }
-
-        function updateImage() {
-            modalImg.src = images[currentIndex];
-            caption.innerText = captions[currentIndex] || `PREVIEW | ${currentIndex + 1} of ${images.length}`;
-        }
-        
-        window.onclick = function(event) {
-            if (event.target == modal) closeGallery();
-        }
-        
-        document.addEventListener('keydown', function(event) {
-            if (modal.style.display === "flex") {
-                if (event.key === "Escape") closeGallery();
-                if (event.key === "ArrowLeft") changeSlide(-1);
-                if (event.key === "ArrowRight") changeSlide(1);
-            }
-        });
+        function openGallery() { if (images.length > 0) { modal.style.display = "flex"; updateImage(); } }
+        function closeGallery() { modal.style.display = "none"; }
+        function changeSlide(n) { currentIndex += n; if (currentIndex >= images.length) currentIndex = 0; if (currentIndex < 0) currentIndex = images.length - 1; updateImage(); }
+        function updateImage() { modalImg.src = images[currentIndex]; caption.innerText = captions[currentIndex]; }
+        window.onclick = function(event) { if (event.target == modal) closeGallery(); }
+        document.addEventListener('keydown', function(event) { if (modal.style.display === "flex") { if (event.key === "Escape") closeGallery(); if (event.key === "ArrowLeft") changeSlide(-1); if (event.key === "ArrowRight") changeSlide(1); } });
     </script>
-
 </body>
 </html>
