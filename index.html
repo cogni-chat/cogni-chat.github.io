@@ -31,45 +31,21 @@
             padding-bottom: 60px;
         }
 
-        /* --- THE LOGO --- */
-        .logo-container {
-            width: 140px;
-            height: 140px;
-            margin-top: 80px;
-            margin-bottom: 15px; 
-            position: relative;
-            border-radius: 50%;
-            overflow: hidden; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            background: white;
-            border: 1px solid #eee;
-        }
-        
-        .logo-video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-        }
-
         /* --- TYPOGRAPHY --- */
         h1 { 
             font-weight: 800; 
             letter-spacing: -0.04em; 
-            margin-top: 0;
+            margin-top: 80px; 
             margin-bottom: 10px; 
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--ink);
             line-height: 1.1;
         }
         
         .tagline { 
             color: var(--slate); 
-            font-size: 1.25rem; 
-            margin-bottom: 20px; 
+            font-size: 1.2rem; 
+            margin-bottom: 30px; 
             font-weight: 400; 
             max-width: 600px; 
             line-height: 1.5; 
@@ -78,14 +54,14 @@
 
         .wip-badge {
             display: inline-block;
-            background-color: #FFF7ED; /* Orange-50 */
-            color: #C2410C; /* Orange-700 */
+            background-color: #FFF7ED;
+            color: #C2410C;
             font-size: 0.75rem;
             font-weight: 600;
             padding: 6px 16px;
             border-radius: 99px;
             border: 1px solid #FFEDD5;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             letter-spacing: 0.5px;
         }
 
@@ -93,7 +69,7 @@
         .hero-card {
             background: white;
             border: 1px solid #e5e5e5;
-            padding: 40px;
+            padding: 50px 40px;
             border-radius: 24px;
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
             max-width: 500px;
@@ -124,12 +100,30 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: inline-block;
         }
 
+        /* Video Banner Styling 
+           Reuses the same class to keep dimensions consistent
+        */
+        .family-banner {
+            display: block; 
+            margin: 0 auto 20px auto; 
+            width: 100%;
+            max-width: 400px; 
+            height: auto;
+            border-radius: 12px; /* Optional: Slight rounding looks nice on video */
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         h3 { 
-            margin: 0 0 15px 0; 
+            margin: 10px 0 15px 0; 
             font-weight: 700; 
             color: var(--ink); 
             font-size: 1.5rem; 
@@ -139,7 +133,7 @@
             color: var(--slate); 
             font-size: 1rem; 
             line-height: 1.6; 
-            margin-bottom: 30px; 
+            margin-bottom: 35px; 
         }
 
         /* --- BUTTONS --- */
@@ -166,7 +160,7 @@
         .btn-outline:hover { background-color: #f5f5f5; color: black; }
 
         .specs {
-            margin-top: 30px;
+            margin-top: 35px;
             padding-top: 25px;
             border-top: 1px dashed #eee;
             display: flex;
@@ -195,13 +189,6 @@
 </head>
 <body>
 
-    <div class="logo-container">
-        <video class="logo-video" autoplay loop muted playsinline>
-            <source src="assets/cogni-chat-new-logo.mp4" type="video/mp4">
-            <img src="assets/cogni-chat-new-logo.png" alt="CogniChat Cortex">
-        </video>
-    </div>
-
     <h1>Cogni</h1>
     <div class="tagline">
         Local-First Intelligence.<br>
@@ -215,7 +202,9 @@
     <div class="hero-card">
         <span class="tech-badge">Edge Agent V1</span>
         
-        <img src="assets/cogni-family-all.png" alt="Cogni Ecosystem" style="display: block; margin: 0 auto 20px auto; max-width: 100%; height: auto;">
+        <video class="family-banner" autoplay loop muted playsinline>
+            <source src="assets/cogni_one_logo_with_family.mp4" type="video/mp4">
+        </video>
 
         <h3>Cogni One</h3>
         
@@ -239,7 +228,7 @@
             </div>
             <div class="spec-item">
                 <span class="spec-label">Client</span>
-                <span class="spec-val">Your Laptop / Mobile</span>
+                <span class="spec-val">Laptop / Mobile</span>
             </div>
             <div class="spec-item">
                 <span class="spec-label">Brain</span>
