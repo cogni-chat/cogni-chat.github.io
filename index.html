@@ -110,16 +110,18 @@
             display: inline-block;
         }
 
-        /* Video Banner */
+        /* Video Banner CSS - THE FIX */
         .family-banner {
             display: block; 
             margin: 0 auto 20px auto; 
             width: 100%;
             max-width: 400px; 
-            height: auto;
+            /* Use a fixed height or aspect ratio if needed, otherwise auto lets width dictate height */
+            height: auto; 
             border-radius: 12px;
-            /* Ensures the video doesn't look broken while loading */
-            background-color: #fafafa; 
+            background-color: #fafafa;
+            /* THE FIX: This ensures the video fills the box, cropping black bars */
+            object-fit: cover; 
         }
 
         h3 { 
@@ -253,14 +255,12 @@
     <script>
         lucide.createIcons();
 
-        // Updated with your actual filenames
         const images = [
             'assets/cogni-core-1-terminal.jpg', 
             'assets/cogni-core-2-webui.png', 
             'assets/cogni-core-3-mobile.png'
         ];
         
-        // Captions for the images
         const captions = [
             'CORE: Python Terminal Interface (v1.35)',
             'MIND: Chat Interface with Memory',
