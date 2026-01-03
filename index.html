@@ -29,7 +29,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Centers card vertically */
+            justify-content: center;
             min-height: 100vh;
             margin: 0;
             text-align: center;
@@ -43,12 +43,13 @@
             padding: 40px;
             border-radius: 24px;
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
-            max-width: 420px; /* Slightly tighter width for elegance */
+            max-width: 380px; /* Reduced width for a cleaner, tighter mobile look */
             width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
-            margin-top: -40px; /* Optical centering compensation */
+            /* Optical centering adjustment */
+            margin-top: -20px; 
         }
 
         .hero-card:hover {
@@ -68,13 +69,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .wip-badge {
             background-color: #FFF7ED;
             color: #C2410C;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             padding: 4px 10px;
             border-radius: 99px;
@@ -83,17 +84,18 @@
         }
         
         .version-badge {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #999;
             font-weight: 600;
         }
 
-        /* --- VIDEO CROPPER (BETTER FIX) --- */
+        /* --- VIDEO CROPPER (FINE TUNED) --- */
         .video-cropper {
             display: block;
             margin: 0 auto 10px auto;
             width: 100%;
-            height: 220px; /* Fixed height container */
+            /* Forces a square shape. This usually cuts off side bars automatically. */
+            aspect-ratio: 1 / 0.9; 
             border-radius: 12px;
             overflow: hidden; 
             position: relative;
@@ -103,27 +105,28 @@
             width: 100%;
             height: 100%;
             object-fit: cover; 
-            /* Instead of scale, we use object-position to center.
-               Since 'cover' naturally crops overflow, this should work better
-               without "zooming" too hard if the aspect ratio is set on parent.
+            object-position: center;
+            /* THE FIX: Scale 1.08 zooms in 8%.
+               Adjust this number up (e.g. 1.10) if you still see black lines.
+               Adjust down (e.g. 1.05) if icons are cut.
             */
-            object-position: center; 
+            transform: scale(1.08); 
         }
 
         /* --- TITLE & TAGLINE --- */
         h1 { 
-            margin: 10px 0 5px 0; 
+            margin: 15px 0 5px 0; 
             font-weight: 800; 
             color: var(--ink); 
-            font-size: 2rem; 
-            letter-spacing: -0.03em;
+            font-size: 2.2rem; 
+            letter-spacing: -0.04em;
         }
 
         .card-tagline {
             color: var(--slate);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         p.description { 
@@ -131,11 +134,11 @@
             font-size: 0.9rem; 
             line-height: 1.6; 
             margin-bottom: 30px; 
-            padding: 0 10px;
+            padding: 0 5px;
         }
 
         /* --- BUTTONS --- */
-        .btn-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
         
         .btn { 
             display: inline-flex; align-items: center; gap: 6px; 
@@ -151,7 +154,6 @@
 
         /* --- SPECS --- */
         .specs {
-            margin-top: 25px;
             padding-top: 20px;
             border-top: 1px dashed #eee;
             display: flex;
@@ -165,7 +167,7 @@
 
         /* --- FOOTER --- */
         footer { 
-            margin-top: 30px; 
+            margin-top: 40px; 
             font-size: 0.75rem; 
             color: #ccc; 
             text-transform: uppercase; 
@@ -173,7 +175,7 @@
         }
         footer a { color: #999; text-decoration: none; font-weight: 700; }
         
-        /* Modal Styles remain the same (omitted for brevity, keep your existing script/css for modal) */
+        /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; }
         .modal-content { max-width: 90%; max-height: 85vh; border-radius: 12px; }
         .close-btn { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
