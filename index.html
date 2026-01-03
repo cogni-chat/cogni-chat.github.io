@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cogni | Local-First Intelligence (MVP)</title>
-    <meta name="description" content="A multimodal agent acting as the bridge between your digital life and physical reality.">
+    <title>Cogni.chat | Local-First Intelligence</title>
+    <meta name="description" content="Your private, multimodal LifeOS.">
+    
     <link rel="icon" type="image/ico" href="assets/cogni-chat-new-logo-round.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FAFAFA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
@@ -104,22 +110,16 @@
             display: inline-block;
         }
 
-        /* Video Banner Styling 
-           Reuses the same class to keep dimensions consistent
-        */
+        /* Video Banner */
         .family-banner {
             display: block; 
             margin: 0 auto 20px auto; 
             width: 100%;
             max-width: 400px; 
             height: auto;
-            border-radius: 12px; /* Optional: Slight rounding looks nice on video */
-            animation: fadeIn 0.6s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            border-radius: 12px;
+            /* Ensures the video doesn't look broken while loading */
+            background-color: #fafafa; 
         }
 
         h3 { 
@@ -189,7 +189,8 @@
 </head>
 <body>
 
-    <h1>Cogni</h1>
+    <h1>Cogni.chat</h1>
+    
     <div class="tagline">
         Local-First Intelligence.<br>
         Bridging your Digital Mind with Physical Reality.
@@ -252,11 +253,20 @@
     <script>
         lucide.createIcons();
 
+        // Updated with your actual filenames
         const images = [
-            'assets/cogni-core-1-terminal.png', 
+            'assets/cogni-core-1-terminal.jpg', 
             'assets/cogni-core-2-webui.png', 
             'assets/cogni-core-3-mobile.png'
         ];
+        
+        // Captions for the images
+        const captions = [
+            'CORE: Python Terminal Interface (v1.35)',
+            'MIND: Chat Interface with Memory',
+            'BODY: Computer Vision & Satvic Analysis'
+        ];
+
         let currentIndex = 0;
         const modal = document.getElementById('galleryModal');
         const modalImg = document.getElementById('modalImg');
@@ -282,7 +292,7 @@
 
         function updateImage() {
             modalImg.src = images[currentIndex];
-            caption.innerText = `PREVIEW | ${currentIndex + 1} of 3`;
+            caption.innerText = captions[currentIndex] || `PREVIEW | ${currentIndex + 1} of ${images.length}`;
         }
         
         window.onclick = function(event) {
