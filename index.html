@@ -110,18 +110,32 @@
             display: inline-block;
         }
 
-        /* Video Banner CSS - THE FIX */
-        .family-banner {
-            display: block; 
-            margin: 0 auto 20px auto; 
+        
+        /* --- VIDEO CROPPER --- */
+        .video-cropper {
+            display: block;
+            margin: 0 auto 20px auto;
             width: 100%;
-            max-width: 400px; 
-            /* Use a fixed height or aspect ratio if needed, otherwise auto lets width dictate height */
-            height: auto; 
+            max-width: 400px;
+            /* Force a specific height or aspect ratio to frame the content */
+            aspect-ratio: 4/3; 
             border-radius: 12px;
-            background-color: #fafafa;
-            /* THE FIX: This ensures the video fills the box, cropping black bars */
-            object-fit: cover; 
+            overflow: hidden; /* This cuts off the black bars */
+            position: relative;
+            background-color: white;
+        }
+
+        .family-banner {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* ZOOM TRICK: 
+            Scale 1.35 zooms in by 35%. 
+            This pushes the side black bars out of the viewable area.
+            Adjust this number (e.g., 1.2 or 1.5) if it cuts off too much/little.
+            */
+            transform: scale(1.35); 
+            transform-origin: center;
         }
 
         h3 { 
@@ -205,9 +219,11 @@
     <div class="hero-card">
         <span class="tech-badge">Edge Agent V1</span>
         
-        <video class="family-banner" autoplay loop muted playsinline>
-            <source src="assets/cogni_one_logo_with_family.mp4" type="video/mp4">
-        </video>
+       <div class="video-cropper">
+            <video class="family-banner" autoplay loop muted playsinline>
+                <source src="assets/cogni_one_logo_with_family.mp4" type="video/mp4">
+            </video>
+        </div>
 
         <h3>Cogni One</h3>
         
